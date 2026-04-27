@@ -1,14 +1,14 @@
 import pytest
-from httpx import AsyncClient
+from httpx import Client
 from src.app import app
 
 
 @pytest.fixture
-async def client():
-    """Async test client for the ASGI app.
+def client():
+    """Synchronous test client for the ASGI app.
 
-    Provides an `httpx.AsyncClient` configured to send requests directly to
-    the `app` from `src.app`.
+    Uses `httpx.Client` so tests can remain synchronous and not require
+    `pytest-asyncio`.
     """
-    async with AsyncClient(app=app, base_url="http://test") as ac:
-        yield ac
+    with Client(app=app, base_url="http://test") as c:
+        yield c

@@ -1,12 +1,8 @@
-import pytest
-
-
-@pytest.mark.asyncio
-async def test_root_redirect(client):
+def test_root_redirect(client):
     # Arrange: `client` fixture provided by tests/conftest.py
 
     # Act
-    response = await client.get("/")
+    response = client.get("/")
 
     # Assert
     # The root endpoint issues a redirect to `/static/index.html`.
